@@ -41,8 +41,8 @@ const CONTACT_CARDS = [
 
 const SCHOOL_ADDRESS_QUERY =
   "PF54+QRX, College Rd, New Colony, Ambasamudram, Tamil Nadu 627401";
-const SCHOOL_PHONE = "+916385654159";
-const SCHOOL_EMAIL = "info@thirthapathihss.edu";
+const SCHOOL_PHONE = "04634-250946";
+const SCHOOL_EMAIL = "thsschool@yahoo.com";
 
 export default function Contact() {
   const [form, setForm] = useState({
