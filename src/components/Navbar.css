@@ -1,0 +1,354 @@
+/* ==========================================================================
+   St. Joseph's Higher Secondary School — Navbar
+   ========================================================================== */
+
+:root {
+  --navy: #0b2d5b;
+  --navy-soft: #234a82;
+  --gold: #c89b3c;
+  --gold-dark: #a67f2d;
+  --white: #ffffff;
+  --off-white: #f7f9fc;
+  --border-hairline: rgba(11, 45, 91, 0.08);
+
+  --navbar-height: 90px;
+  --navbar-height-tablet: 76px;
+  --navbar-height-mobile: 68px;
+
+  --font-display: "Playfair Display", "Georgia", serif;
+  --font-body: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --transition-fast: 0.2s ease;
+  --transition-medium: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shadow-navbar: 0 2px 20px rgba(11, 45, 91, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Navbar Shell
+   ========================================================================== */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  background: var(--white);
+  box-shadow: var(--shadow-navbar);
+  font-family: var(--font-body);
+}
+
+.navbar__inner {
+  height: var(--navbar-height);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* ==========================================================================
+   Brand (Logo + School Name)
+   ========================================================================== */
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.navbar__logo {
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.navbar__school-name {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.navbar__school-name-primary {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--navy);
+  letter-spacing: 0.2px;
+}
+
+.navbar__school-name-secondary {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12.5px;
+  color: var(--navy-soft);
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Center Navigation Links
+   ========================================================================== */
+
+.navbar__links {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar__links ul {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__links a {
+  position: relative;
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  padding: 8px 2px;
+  transition: color var(--transition-fast);
+}
+
+.navbar__links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--transition-medium);
+}
+
+.navbar__links a:hover,
+.navbar__links a:focus-visible {
+  color: var(--gold-dark);
+}
+
+.navbar__links a:hover::after,
+.navbar__links a:focus-visible::after {
+  transform: scaleX(1);
+}
+
+/* Active page link — desktop */
+.navbar__links a.navbar__link--active {
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.navbar__links a.navbar__link--active::after {
+  transform: scaleX(1);
+}
+
+/* ==========================================================================
+   Hamburger (hidden on desktop)
+   ========================================================================== */
+
+.navbar__hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  z-index: 1002;
+}
+
+.navbar__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--navy);
+  border-radius: 2px;
+  transition: transform var(--transition-medium), opacity var(--transition-fast);
+}
+
+.navbar__hamburger.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.navbar__hamburger.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar__hamburger.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Mobile Slide-down Menu
+   ========================================================================== */
+
+.navbar__mobile-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--white);
+  border-top: 1px solid var(--border-hairline);
+  box-shadow: var(--shadow-navbar);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height var(--transition-medium), opacity var(--transition-fast);
+  z-index: 1001;
+}
+
+.navbar__mobile-menu.is-open {
+  max-height: 600px;
+  opacity: 1;
+}
+
+.navbar__mobile-menu nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar__mobile-menu nav a {
+  display: block;
+  padding: 14px 32px;
+  color: var(--navy);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border-hairline);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.navbar__mobile-menu nav a:hover,
+.navbar__mobile-menu nav a:focus-visible {
+  background: var(--off-white);
+  color: var(--gold-dark);
+}
+
+/* Active page link — mobile */
+.navbar__mobile-menu nav a.navbar__link--active {
+  background: var(--off-white);
+  color: var(--gold-dark);
+  font-weight: 600;
+}
+
+.navbar__backdrop {
+  position: fixed;
+  inset: var(--navbar-height) 0 0 0;
+  background: rgba(11, 45, 91, 0.25);
+  z-index: 999;
+}
+
+/* ==========================================================================
+   Tablet (≤ 1024px)
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .navbar__inner {
+    padding: 0 28px;
+  }
+
+  .navbar__links ul {
+    gap: 22px;
+  }
+
+  .navbar__links a {
+    font-size: 14px;
+  }
+}
+
+/* ==========================================================================
+   Tablet / Mobile breakpoint — collapse to hamburger (≤ 860px)
+   ========================================================================== */
+
+@media (max-width: 860px) {
+  .navbar__inner {
+    height: var(--navbar-height-tablet);
+    padding: 0 20px;
+  }
+
+  .navbar__links {
+    display: none;
+  }
+
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  .navbar__backdrop {
+    inset: var(--navbar-height-tablet) 0 0 0;
+  }
+
+  .navbar__logo {
+    height: 48px;
+    width: 48px;
+  }
+
+  .navbar__school-name-primary {
+    font-size: 18px;
+  }
+
+  .navbar__school-name-secondary {
+    font-size: 11px;
+  }
+}
+
+/* ==========================================================================
+   Mobile (≤ 480px)
+   ========================================================================== */
+
+@media (max-width: 480px) {
+  .navbar__inner {
+    height: var(--navbar-height-mobile);
+    padding: 0 16px;
+  }
+
+  .navbar__backdrop {
+    inset: var(--navbar-height-mobile) 0 0 0;
+  }
+
+  .navbar__logo {
+    height: 40px;
+    width: 40px;
+  }
+
+  .navbar__school-name-primary {
+    font-size: 16px;
+  }
+
+  .navbar__school-name-secondary {
+    font-size: 10px;
+    letter-spacing: 0.4px;
+  }
+
+  .navbar__mobile-menu nav a {
+    padding: 13px 20px;
+    font-size: 15px;
+  }
+}

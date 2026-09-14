@@ -1,0 +1,432 @@
+
+.admin-page {
+  --navy: #0a1a42;
+  --navy-deep: #050d24;
+  --navy-mid: #122759;
+  --gold: #d4af37;
+  --gold-hot: #b8860b;
+  --gold-soft: rgba(212, 175, 55, 0.12);
+  --white: #ffffff;
+  --off-white: #f8f9fc;
+  --gray-text: #5c6784;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+
+  background: 
+    radial-gradient(circle at 100% 0%, rgba(212,175,55,0.04), transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(10,26,66,0.03), transparent 40%),
+    var(--white);
+  color: var(--navy);
+  font-family: "Baloo Thambi 2", "Poppins", sans-serif; /* changed */
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+.admin-page * { box-sizing: border-box; }
+
+.admin-page h1, .admin-page h2, .admin-page h3, .admin-page h4 {
+  font-family: "Noto Serif Tamil", "Playfair Display", serif; /* changed */
+  margin: 0;
+}
+.admin-page p { margin: 0; }
+
+.admin-page .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.2,0.7,0.2,1), transform 0.7s cubic-bezier(0.2,0.7,0.2,1);
+}
+.admin-page .reveal-visible { opacity: 1; transform: translateY(0); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.admin-page .anim-fade-up {
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.2,0.7,0.2,1) forwards;
+}
+
+/* HERO */
+
+.admin-hero {
+  position: relative;
+  background: linear-gradient(150deg, var(--navy-mid) 0%, var(--navy-deep) 100%);
+  padding: clamp(70px, 9vw, 110px) 24px clamp(60px, 7vw, 90px);
+  overflow: hidden;
+  border-bottom: 3px solid var(--gold);
+}
+.admin-hero-overlay {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.admin-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(212,175,55,0.10), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(212,175,55,0.08), transparent 40%);
+  pointer-events: none;
+}
+.admin-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(45deg, rgba(212,175,55,0.03) 0px, rgba(212,175,55,0.03) 1px, transparent 1px, transparent 14px);
+  pointer-events: none;
+}
+.admin-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-style: italic;
+  font-family: "Noto Serif Tamil", serif;
+  color: var(--gold);
+  font-size: 1.05rem;
+  letter-spacing: 1.5px;
+  margin-bottom: 14px;
+  animation-delay: 0.1s;
+}
+.admin-eyebrow::before, .admin-eyebrow::after {
+  content: "";
+  height: 1px;
+  width: 30px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.admin-eyebrow::after { background: linear-gradient(90deg, var(--gold), transparent); }
+.admin-hero-title {
+  color: #fff;
+  font-size: clamp(2.1rem, 1.6rem + 2vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: normal;
+  animation-delay: 0.25s;
+}
+
+
+.admin-hero-tagline {
+  color: #b9c2dc;
+  font-size: 1.05rem;
+  font-weight: 300;
+  margin: 16px auto 0 !important; /* !important to beat .admin-page p's margin:0 */
+  max-width: 560px;
+  width: 100%;
+  line-height: 1.7;
+  animation-delay: 0.4s;
+  text-align: center;
+}
+
+/* SHARED SECTION HEADING */
+.admin-page .section-heading-wrap { text-align: center; }
+.admin-page .section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 12px;
+}
+.admin-page .section-heading h2 {
+  font-size: clamp(1.6rem, 1.4rem + 1vw, 2.2rem);
+  font-weight: 800;
+  color: var(--navy);
+}
+.admin-page .rule {
+  height: 2px;
+  width: 48px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.admin-page .section-heading .rule:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.admin-page .section-subheading {
+  color: var(--gray-text);
+  font-size: 1rem;
+  margin-bottom: 40px;
+  font-weight: 300;
+}
+
+/* CURRENT COMMITTEE */
+.current-committee {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(60px, 7vw, 90px) 24px 30px;
+}
+
+.top-officials {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px; /* was 20px */
+  max-width: 800px;
+  margin: 36px auto 48px; /* was 40px bottom — more room before "உறுப்பினர்கள்" heading */
+}
+@media (max-width: 620px) {
+  .top-officials { grid-template-columns: 1fr; }
+}
+
+.official-card {
+  background: linear-gradient(150deg, var(--navy-mid), var(--navy-deep)); /* both cards navy now */
+  border: 1px solid rgba(212,175,55,0.3);
+  border-radius: var(--radius-lg);
+  padding: 30px 24px;
+  text-align: center;
+  transition: transform 0.35s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.35s ease;
+  box-shadow: 0 1px 2px rgba(10,26,66,0.04), 0 4px 12px rgba(10,26,66,0.03);
+  position: relative;
+}
+.official-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 34px rgba(10,26,66,0.14);
+}
+
+.official-card.chairman {
+  border-color: var(--gold);
+  border-width: 2px;
+}
+.official-card.chairman::before {
+  content: "★";
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  color: var(--gold);
+  font-size: 0.9rem;
+}
+.official-card h3,
+.official-card .official-label { color: #fff; }
+.official-card .official-label { color: var(--gold); }
+.official-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-hot));
+  color: var(--navy-deep);
+  font-family: "Noto Serif Tamil", serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+  line-height: 1;
+}
+.official-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold); 
+    margin-bottom: 6px;
+}
+.official-card h3 {
+  font-size: 1.1rem;
+
+  font-weight: 700;
+}
+
+
+
+.subgroup-title {
+  font-size: 1.05rem;
+  color: var(--navy);
+  font-weight: 700;
+  margin: 0 0 18px; /* top margin removed here — handled by member-grid margin-bottom above instead */
+  border-left: 3px solid var(--gold);
+  padding-left: 12px;
+  padding-top: 24px;
+  border-top: 1px dashed rgba(10,26,66,0.12); /* visual divider — makes the section break unmistakable */
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px 18px;
+  margin-bottom: 36px; /* was 10px — this was the real gap, now proper spacing before next subgroup-title */
+}
+
+/* Card depth + motion polish */
+
+
+
+.member-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--off-white);
+  border: 1px solid rgba(10,26,66,0.1); /* darker border, was 0.06 — more defined edges */
+  border-left: 4px solid var(--gold); /* was 3px */
+  border-radius: 6px 14px 14px 6px; /* was 4px 16px — slightly less rounded, more "card" less "pill" */
+  padding: 18px 20px;
+  min-height: 78px;
+  transition: transform 0.3s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.3s ease, border-left-color 0.3s ease;
+  box-shadow: 0 1px 3px rgba(10,26,66,0.06); /* was double-layer shadow — flatter, cleaner */
+}
+.member-card:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 16px rgba(10,26,66,0.12);
+  border-left-color: var(--gold-hot);
+  border-left-width: 5px;
+}
+
+/* Avatar — explicit fixed colors, not relying on cache */
+
+
+.member-avatar {
+  flex-shrink: 0;
+  width: 42px; /* was 38px — slightly bigger, better balance with new padding */
+  height: 42px;
+  min-width: 42px;
+  border-radius: 50%;
+  background: var(--navy) !important;
+  color: var(--gold) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-family: "Noto Serif Tamil", serif;
+  font-size: 0.95rem;
+  line-height: 1;
+  transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+.member-card:hover .member-avatar {
+  transform: scale(1.08);
+}
+
+.member-info { display: flex; flex-direction: column; gap: 2px; }
+.member-name { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+.member-role { font-size: 0.74rem; color: var(--gray-text); }
+.member-card > span:not(.member-avatar) { font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+
+/* HISTORY SECTION */
+.admin-history-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: clamp(50px, 6vw, 80px) 24px 90px;
+}
+
+.admin-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 36px;
+  border-bottom: none; /* remove the underline-strip approach entirely */
+  padding: 6px;
+  background: var(--off-white);
+  border-radius: 14px;
+  max-width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.admin-tabs button {
+  font-family: "Baloo Thambi 2", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--gray-text);
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2,0.8,0.2,1);
+}
+.admin-tabs button:hover {
+  color: var(--navy);
+  background: rgba(212,175,55,0.08);
+}
+.admin-tabs button.active {
+  color: #fff;
+  background: linear-gradient(135deg, var(--navy-mid), var(--navy-deep));
+  box-shadow: 0 4px 12px rgba(10,26,66,0.2);
+  font-weight: 700;
+}
+.admin-tabs button:focus-visible {
+  outline: 2px solid var(--gold-hot);
+  outline-offset: 2px;
+}
+/* wrapper that remounts on tab change to replay the fade-in */
+.history-tab-panel {
+  animation-duration: 0.5s;
+}
+
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* was 0 — separates each row into distinct blocks */
+  border-radius: 0;
+  overflow: visible;
+  border: none;
+  position: relative;
+  padding-left: 36px;
+}
+.history-list::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--gold), rgba(212,175,55,0.15));
+}
+
+.history-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 14px;
+  background: var(--off-white); /* was transparent — now each row reads as a card */
+  padding: 14px 18px;
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid rgba(10,26,66,0.06);
+  box-shadow: 0 1px 2px rgba(10,26,66,0.03);
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.history-row::before {
+  content: "";
+  position: absolute;
+  left: -32px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--gold);
+  z-index: 1;
+  box-shadow: 0 0 0 3px var(--white); /* creates a clean "punch-through" look where the line meets the dot */
+}
+.history-row:nth-child(even) { background: var(--white); } /* keep subtle alternation but both now visible as cards */
+
+.history-row:hover {
+  background: var(--gold-soft);
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(10,26,66,0.08);
+}
+.history-row:hover::before {
+  background: var(--gold);
+}
+/* REPLACE with this */
+.history-num {
+  display: none;
+}
+.history-name {
+  font-size: 0.92rem;
+  color: var(--navy);
+  font-weight: 500;
+}
+.history-years {
+  font-size: 0.85rem;
+  color: var(--gray-text);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .history-row {
+    grid-template-columns: 26px 1fr;
+    grid-template-areas: "num name" ". years";
+  }
+  .history-num { grid-area: num; }
+  .history-name { grid-area: name; }
+  .history-years { grid-area: years; font-size: 0.78rem; }
+}
