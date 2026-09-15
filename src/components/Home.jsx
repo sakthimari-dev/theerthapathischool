@@ -339,9 +339,12 @@ Building Character & Future Leaders
             <h2>Why Choose Us</h2>
             <span className="rule" />
           </div>
-          <p className="section-subheading">
-            We provide the best learning environment for your child
-          </p>
+         
+         <p className="section-subheading">
+  Theerthapathi Higher Secondary School in Ambasamudram, Tirunelveli, Tamil Nadu
+  provides a supportive learning environment focused on academic excellence,
+  character development, sports and co-curricular activities.
+</p>
         </Reveal>
 
         <div className="feature-grid">
@@ -415,8 +418,9 @@ Building Character & Future Leaders
               ))}
             </ul>
        
-       <button className="view-all-btn" onClick={() => navigate("/news")}>
-  View All News
+     
+     <button className="view-all-btn" onClick={() => navigate("/events")}>
+  View All News & Events
 </button>
           </div>
         </Reveal>
