@@ -18,9 +18,8 @@ function SEO() {
 
   useEffect(() => {
     const seoData = {
-      "/": {
-        title:
-          "Theerthapathi Higher Secondary School | Official Website",
+     "/": {
+  title: "Theerthapathi Higher Secondary School, Ambasamudram | Official Website",
         description:
           "Official website of Theerthapathi Higher Secondary School. Explore school information, staff, administration, facilities, events, gallery and contact details.",
       },
