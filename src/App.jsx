@@ -18,11 +18,14 @@ function SEO() {
 
   useEffect(() => {
     const seoData = {
-     "/": {
-  title: "Theerthapathi Higher Secondary School, Ambasamudram | Official Website",
-        description:
-          "Official website of Theerthapathi Higher Secondary School. Explore school information, staff, administration, facilities, events, gallery and contact details.",
-      },
+   
+"/": {
+  title:
+    "Theerthapathi Higher Secondary School, Ambasamudram, Tirunelveli",
+  description:
+    "Official website of Theerthapathi Higher Secondary School in Ambasamudram, Tirunelveli, Tamil Nadu. Explore our school history, teaching staff, administration, facilities, events, gallery and contact information.",
+},
+
 
       "/about": {
         title:
