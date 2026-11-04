@@ -1,5 +1,11 @@
+
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
@@ -10,7 +16,7 @@ import Facilities from "./components/Facilities";
 import Contact from "./components/Contact";
 import Gallery from "./components/Gallery";
 import Events from "./components/Events";
-
+import Footer from "./components/Footer";
 
 // SEO Component
 function SEO() {
@@ -18,14 +24,12 @@ function SEO() {
 
   useEffect(() => {
     const seoData = {
-   
-"/": {
-  title:
-    "Theerthapathi Higher Secondary School, Ambasamudram, Tirunelveli",
-  description:
-    "Official website of Theerthapathi Higher Secondary School in Ambasamudram, Tirunelveli, Tamil Nadu. Explore our school history, teaching staff, administration, facilities, events, gallery and contact information.",
-},
-
+      "/": {
+        title:
+          "Theerthapathi Higher Secondary School, Ambasamudram, Tirunelveli",
+        description:
+          "Official website of Theerthapathi Higher Secondary School in Ambasamudram, Tirunelveli, Tamil Nadu. Explore our school history, teaching staff, administration, facilities, events, gallery and contact information.",
+      },
 
       "/about": {
         title:
@@ -77,12 +81,12 @@ function SEO() {
       },
     };
 
-    const currentSEO = seoData[location.pathname] || seoData["/"];
+    const currentSEO =
+      seoData[location.pathname] || seoData["/"];
 
-    // Change page title
     document.title = currentSEO.title;
 
-    // Change meta description
+    // Meta Description
     let descriptionTag = document.querySelector(
       'meta[name="description"]'
     );
@@ -119,7 +123,23 @@ function SEO() {
   return null;
 }
 
+// Home Page - All Sections
+function HomePage() {
+  return (
+    <>
+      <Home />
+      <About />
+      <Facilities />
+      <Staffs />
+      <Administration />
+      <Gallery />
+      <Events />
+      <Contact />
+    </>
+  );
+}
 
+// Main App
 function App() {
   return (
     <BrowserRouter>
@@ -129,18 +149,52 @@ function App() {
       <Navbar />
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/staff" element={<Staffs />} />
+
+        {/* Home with all sections */}
+        <Route
+          path="/"
+          element={<HomePage />}
+        />
+
+        {/* Individual Pages */}
+        <Route
+          path="/about"
+          element={<About />}
+        />
+
+        <Route
+          path="/facilities"
+          element={<Facilities />}
+        />
+
+        <Route
+          path="/staff"
+          element={<Staffs />}
+        />
+
         <Route
           path="/administration"
           element={<Administration />}
         />
-        <Route path="/facilities" element={<Facilities />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/contact" element={<Contact />} />
+
+        <Route
+          path="/gallery"
+          element={<Gallery />}
+        />
+
+        <Route
+          path="/events"
+          element={<Events />}
+        />
+
+        <Route
+          path="/contact"
+          element={<Contact />}
+        />
+
       </Routes>
+
+      <Footer />
 
     </BrowserRouter>
   );

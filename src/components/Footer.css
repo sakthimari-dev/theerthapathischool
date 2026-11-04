@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@400;500;600&display=swap");
+
+.site-footer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  color: #fff;
+  background: radial-gradient(120% 200% at 50% 0%, #142957 0%, #08142f 55%, #050d20 100%);
+  font-family: "Poppins", system-ui, sans-serif;
+}
+
+/* animated gold hairline on top */
+.site-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ffc93c, #fff3b0, #ffc93c, transparent);
+  background-size: 200% 100%;
+  animation: goldSweep 6s linear infinite;
+}
+
+.footer-marquee {
+  padding: 26px 0;
+  overflow: hidden;
+  /* soft fade on left & right edges */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.footer-track {
+  display: flex;
+  width: max-content;
+  animation: footerScroll 40s linear infinite;
+  will-change: transform;
+}
+
+.footer-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 40px;
+  padding-right: 40px; /* must equal gap for a seamless loop */
+  white-space: nowrap;
+}
+
+.footer-label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #b7c5de;
+}
+
+.footer-brand {
+  font-family: "Cinzel", serif;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  background: linear-gradient(100deg, #ffc93c 0%, #fff3b0 35%, #ffd75e 55%, #ffc93c 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 90, 0.55));
+  animation: shimmer 5s linear infinite;
+}
+
+.footer-contact {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 187, 75, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  transition: all 0.3s ease;
+}
+
+.footer-contact:hover {
+  background: rgba(232, 187, 75, 0.15);
+  border-color: #e8bb4b;
+  color: #f7e08a;
+  box-shadow: 0 0 18px rgba(232, 187, 75, 0.3);
+}
+
+.footer-icon {
+  color: #ffc93c;
+}
+
+.footer-school {
+  font-family: "Cinzel", serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #fff;
+}
+
+.footer-divider {
+  font-size: 16px;
+  color: #ffc93c;
+  opacity: 0.9;
+  text-shadow: 0 0 10px rgba(255, 201, 60, 0.6);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding: 14px 15px;
+  border-top: 1px solid rgba(232, 187, 75, 0.15);
+  background: rgba(5, 13, 32, 0.85);
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+  color: #8a9bb8;
+}
+
+/* 4 groups → move exactly 1 group (25%) = seamless */
+@keyframes footerScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-25%); }
+}
+
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+@keyframes goldSweep {
+  to { background-position: -200% 0; }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .footer-marquee { padding: 20px 0; }
+  .footer-track { animation-duration: 32s; }
+  .footer-group { gap: 26px; padding-right: 26px; }
+  .footer-brand { font-size: 17px; }
+  .footer-label, .footer-school { font-size: 11px; }
+  .footer-contact { font-size: 13px; padding: 6px 12px; }
+}
+
+/* Slow down instead of stopping */
+@media (prefers-reduced-motion: reduce) {
+  .footer-track { animation-duration: 80s; }
+  .footer-brand,
+  .site-footer::before { animation: none; }
+}
